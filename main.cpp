@@ -11,32 +11,32 @@ using namespace std;
 
 
 float vert[] = {1, 1, 0,  1, -1, 0,  -1, -1, 0,  -1, 1, 0};
-int n = 100; // размер поля
+int n = 100; // СЂР°Р·РјРµСЂ РїРѕР»СЏ
 
-void MovePlayer(){ // интерактив внутри сцены
+void MovePlayer(){ // РёРЅС‚РµСЂР°РєС‚РёРІ РІРЅСѓС‚СЂРё СЃС†РµРЅС‹
     Camera_DirectionalMovement(GetKeyState('W')<0 ? 1 : (GetKeyState('S')< 0 ? -1 : 0),
                                 GetKeyState('D')<0 ? 1 : (GetKeyState('A')< 0 ? -1 : 0),
                                 0.1);
     Camera_MouseMovement(400,400,0.5);
 }
 
-void ShowWorld() { // отрисовка сцены
+void ShowWorld() { // РѕС‚СЂРёСЃРѕРІРєР° СЃС†РµРЅС‹
     glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(3, GL_FLOAT, 0, &vert);
         for (int i = -n/2; i < n/2; i++)
             for (int j = -n/2; j < n/2; j++) {
                 glPushMatrix();
                     if ((i + j) % 2 == 0)
-                        glColor3f(1, 1, 1); // белый сегмент
+                        glColor3f(1, 1, 1); // Р±РµР»С‹Р№ СЃРµРєС‚РѕСЂ РїРѕР»СЏ
                     else
-                        glColor3f(0, 0, 0.0); // черный сегмент
+                        glColor3f(0, 0, 0); // С‡РµСЂРЅС‹Р№ СЃРµРєС‚РѕСЂ РїРѕР»СЏ
 
                     glTranslatef(i * 2, j * 2, 0);
                     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
                 glPopMatrix();
             }
                 glLineWidth(1);
-    glBegin(GL_LINES);          // осевые направляющие
+    glBegin(GL_LINES);          // РѕСЃРµРІС‹Рµ РЅР°РїСЂР°РІР»СЏСЋС‰РёРµ
         glColor3d(1,0,0);
         glVertex3f(-1000,0,0);
         glVertex3f(1000,0,0);
